@@ -9,18 +9,12 @@ import cookie from 'react-cookies';
 export default class Home extends React.Component {
     constructor(props){
         super(props);
-        console.log(props);
-
-        if (!props.user)
-        {
-            props.history.push('/app/login');
-        }
     }
 
     render() {
         if (!cookie.load("user"))
         {
-            this.props.history.push('/login');
+            this.props.history.push('/app/login');
         }
         return (
             <div className="Home">

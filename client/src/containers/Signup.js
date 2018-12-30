@@ -46,7 +46,7 @@ export default class Signup extends React.Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        fetch('/signup', {
+        fetch('/fire/signup', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -61,9 +61,12 @@ export default class Signup extends React.Component {
             res.json()
         ).then((res) => {
             console.log(res);
-            cookie.save('user', res.user, { path: '/' });
-            this.props.setUser(res.user);
-            this.props.history.push("/");
+            if (res.message === "success")
+            {
+                cookie.save('user', res.user, { path: '/' });
+                this.props.setUser(res.user);
+                this.props.history.push("/app");
+            }
         });
     };
 

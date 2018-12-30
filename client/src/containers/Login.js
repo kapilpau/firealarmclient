@@ -29,7 +29,7 @@ export default class Login extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        fetch('/login', {
+        fetch('/fire/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -41,9 +41,12 @@ export default class Login extends Component {
         }).then(res => res.json())
             .then((res) => {
                 console.log(res);
-                cookie.save('user', res.user, { path: '/' });
-                this.props.setUser(res.user);
-                this.props.history.push("/");
+                if (res.message === "correct")
+                {
+                    cookie.save('user', res.user, { path: '/' });
+                    this.props.setUser(res.user);
+                    this.props.history.push("/app");
+                }
             })
 
     }
