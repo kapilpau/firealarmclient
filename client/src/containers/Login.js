@@ -51,7 +51,7 @@ export default class Login extends Component {
     render() {
         if (cookie.load("user"))
         {
-            this.props.history.push('/');
+            this.props.history.push('/app');
         }
         return (
             <div className="Login">
@@ -81,7 +81,7 @@ export default class Login extends Component {
                     >
                         Login
                     </Button>
-                    <Link to='/signup'>Create account</Link>
+                    <Link to='/app/signup'>Create account</Link>
                 </form>
             </div>
         );

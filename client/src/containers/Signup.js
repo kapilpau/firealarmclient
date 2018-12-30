@@ -70,7 +70,7 @@ export default class Signup extends React.Component {
     render() {
         if (cookie.load("user"))
         {
-            this.props.history.push('/');
+            this.props.history.push('/app');
         }
         return (
             <div className="Login">
@@ -156,7 +156,7 @@ export default class Signup extends React.Component {
                     >
                         Sign Up
                     </Button>
-                    <Link to='/login'>Already have an account, sign in</Link>
+                    <Link to='/app/login'>Already have an account, sign in</Link>
                 </form>
             </div>
         );

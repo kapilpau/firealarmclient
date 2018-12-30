@@ -13,7 +13,7 @@ export default class Home extends React.Component {
 
         if (!props.user)
         {
-            props.history.push('/login');
+            props.history.push('/app/login');
         }
     }
 
