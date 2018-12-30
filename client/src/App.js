@@ -16,7 +16,6 @@ class App extends Component {
         this.state = {
             user: cookie.load("user")
         };
-        console.log(this.state);
     }
 
     handleLogout = () => {
@@ -33,10 +32,11 @@ class App extends Component {
         };
         return (
             <div className="App container">
+                <div>
               <Navbar fluid collapseOnSelect>
                 <Navbar.Header>
                   <Navbar.Brand>
-                    <Link to="/">Fire Alarm App</Link>
+                    <Link to="/app">Fire Alarm App</Link>
                   </Navbar.Brand>
                   <Navbar.Toggle />
                 </Navbar.Header>
@@ -48,13 +48,15 @@ class App extends Component {
                       </Navbar.Collapse>
                       : null}
               </Navbar>
+                </div>
+                <div>
                 <Switch>
-                    <Route path="/" exact render={(props) => (<Home {...props} {...childProps} />)}/>
-                    <Route path="/login" exact render={(props) => (<Login {...props} {...childProps} />)}/>
-                    <Route path="/signup" exact render={(props) => (<Signup {...props} {...childProps} />)}/>
-                    <Route to='/logout'>Logout</Route>
-                    <Route component={NotFound} />
+                    <Route path="/app/" exact render={(props) => (<Home {...props} {...childProps} />)}/>
+                    <Route path="/app/login" exact render={(props) => (<Login {...props} {...childProps} />)}/>
+                    <Route path="/app/signup" exact render={(props) => (<Signup {...props} {...childProps} />)}/>
+                    <Route path="/app*" component={NotFound} />
                 </Switch>
+                </div>
             </div>
         );
     }
