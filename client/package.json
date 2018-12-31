@@ -3,17 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^3.8.1",
     "react": "^16.7.0",
     "react-bootstrap": "^0.32.4",
     "react-cookies": "^0.1.0",
     "react-dom": "^16.7.0",
+    "react-google-maps": "^9.4.5",
     "react-places-autocomplete": "^7.2.0",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "2.1.2"
+    "react-scripts": "2.1.2",
+    "react-sidebar": "^3.0.2",
+    "react-table": "^6.8.6"
   },
   "start_url": "/app",
   "scripts": {
-    "start": "react-scripts start",
+    "start": "PORT=3001 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

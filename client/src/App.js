@@ -31,7 +31,7 @@ class App extends Component {
             setUser: this.setUser
         };
         return (
-            <div className="App container">
+            <div>
                 <div>
               <Navbar fluid collapseOnSelect>
                 <Navbar.Header>

@@ -29,7 +29,7 @@ export default class Login extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        fetch('/fire/login', {
+        fetch('/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
