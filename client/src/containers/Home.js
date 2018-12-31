@@ -23,7 +23,7 @@ export default class Home extends React.Component {
     };
 
     componentDidMount = () => {
-        fetch('/list', {
+        fetch('/fire/list', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
