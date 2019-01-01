@@ -13,7 +13,8 @@
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.2",
     "react-sidebar": "^3.0.2",
-    "react-table": "^6.8.6"
+    "react-table": "^6.8.6",
+    "socket.io-client": "^2.2.0"
   },
   "start_url": "/app",
   "scripts": {

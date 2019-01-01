@@ -10,6 +10,7 @@ import withScriptjs from 'react-google-maps/lib/withScriptjs';
 import Card from '@material-ui/core/Card';
 import ReactTable from "react-table";
 import 'react-table/react-table.css';
+import socketIOClient from "socket.io-client";
 
 export default class Home extends React.Component {
 
@@ -23,11 +24,12 @@ export default class Home extends React.Component {
     };
 
     componentDidMount = () => {
-        if (!cookie.load("user"))
+        if (!cookie.load("user").id)
         {
             this.props.history.push('/app/login');
         }
-        fetch('/fire/list', {
+        const socket = socketIOClient('http://localhost:3000/');
+        fetch('/list', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -36,7 +38,9 @@ export default class Home extends React.Component {
                 id: cookie.load("user").id
             })
         }).then((res) => res.json())
-            .then((res) => this.setState({alarms: res.alarms}))
+        .then((res) => {console.log(resg);this.setState({alarms: res.alarms});});
+        socket.on("alarmUpdate", data => this.setState({ alarms: JSON.parse(data).alarms }));
+        socket.emit('fireJoin', cookie.load("user").id);
     };
     render() {
 
