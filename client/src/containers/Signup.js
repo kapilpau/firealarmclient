@@ -18,7 +18,8 @@ export default class Signup extends React.Component {
             confPassword: "",
             address: "",
             loc: {},
-            name: ""
+            name: "",
+            maxDistance: 25
         };
     }
 
@@ -150,6 +151,15 @@ export default class Signup extends React.Component {
                                 </div>
                             )}
                         </PlacesAutocomplete>
+                    </FormGroup>
+                    <FormGroup>
+                        <ControlLabel>Max distance (km)</ControlLabel>
+                        <FormControl
+                            value={this.state.maxDistane}
+                            onSelect={this.handleSelect}
+                            onChange={this.handleChange}
+                            type="number"
+                        />
                     </FormGroup>
                     <Button
                         block

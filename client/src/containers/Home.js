@@ -23,7 +23,11 @@ export default class Home extends React.Component {
     };
 
     componentDidMount = () => {
-        fetch('/fire/list', {
+        if (!cookie.load("user"))
+        {
+            this.props.history.push('/app/login');
+        }
+        fetch('/list', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
