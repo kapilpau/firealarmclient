@@ -29,7 +29,7 @@ export default class Home extends React.Component {
             this.props.history.push('/app/login');
         }
         const socket = socketIOClient(`http://${window.location.hostname}:3000/`);
-        fetch('/list', {
+        fetch('/fire/list', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
