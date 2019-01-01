@@ -28,7 +28,7 @@ export default class Home extends React.Component {
         {
             this.props.history.push('/app/login');
         }
-        const socket = socketIOClient('http://localhost:3000/');
+        const socket = socketIOClient(`http://${window.location.hostname}:3000/`);
         fetch('/list', {
             method: 'POST',
             headers: {
@@ -38,7 +38,7 @@ export default class Home extends React.Component {
                 id: cookie.load("user").id
             })
         }).then((res) => res.json())
-        .then((res) => {console.log(resg);this.setState({alarms: res.alarms});});
+        .then((res) => {console.log(res);this.setState({alarms: res.alarms});});
         socket.on("alarmUpdate", data => this.setState({ alarms: JSON.parse(data).alarms }));
         socket.emit('fireJoin', cookie.load("user").id);
     };
