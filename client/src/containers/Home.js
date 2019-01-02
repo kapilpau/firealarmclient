@@ -38,7 +38,7 @@ export default class Home extends React.Component {
 
     cancelAlarm = () => {
         console.log(this.state.selectedAlarm);
-        fetch('/cancelAlarm', {
+        fetch('/fire/cancelAlarm', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -53,7 +53,7 @@ export default class Home extends React.Component {
 
     dispatchCrew = () => {
         console.log(this.state.selectedAlarm);
-        fetch('/dispatchCrew', {
+        fetch('/fire/dispatchCrew', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -73,7 +73,7 @@ export default class Home extends React.Component {
         }
         this.setState({lat: cookie.load("user").lat, long: cookie.load("user").long});
         const socket = socketIOClient(`http://${window.location.hostname}:3000/`);
-        fetch('/list', {
+        fetch('/fire/list', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
