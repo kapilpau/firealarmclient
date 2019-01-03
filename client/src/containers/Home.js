@@ -123,7 +123,7 @@ export default class Home extends React.Component {
             Cell: props => <span>{props.value}</span>
         }, {
             Header: 'Detected at',
-            accessor: 'updatedAt',
+            accessor: 'detectedAt',
             Cell: props => <span>{this.getTime(props.value)}</span>,
             maxWidth: 100
         }];
