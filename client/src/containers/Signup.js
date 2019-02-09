@@ -40,14 +40,14 @@ export default class Signup extends React.Component {
 
     handleSelect = address => {
         geocodeByAddress(address)
-            .then(results => getLatLng(results[0]))
+            .then(results => {this.setState({address: results[0].formatted_address});return getLatLng(results[0]);})
             .then(latLng => this.setState({loc: latLng}))
             .catch(error => console.error('Error', error));
     };
 
     handleSubmit = event => {
         event.preventDefault();
-        fetch('/fire/signup', {
+        fetch('/signup', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -56,7 +56,8 @@ export default class Signup extends React.Component {
                 name: this.state.name,
                 loc: this.state.loc,
                 password: this.state.password,
-                email: this.state.email
+                email: this.state.email,
+                maxDistance: this.state.maxDistance
             })
         }).then((res) =>
             res.json()
@@ -152,11 +153,10 @@ export default class Signup extends React.Component {
                             )}
                         </PlacesAutocomplete>
                     </FormGroup>
-                    <FormGroup>
+                    <FormGroup controlId="maxDistance">
                         <ControlLabel>Max distance (km)</ControlLabel>
                         <FormControl
-                            value={this.state.maxDistane}
-                            onSelect={this.handleSelect}
+                            value={this.state.maxDistance}
                             onChange={this.handleChange}
                             type="number"
                         />

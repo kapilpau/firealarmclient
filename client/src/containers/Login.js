@@ -10,6 +10,11 @@ import { Link } from "react-router-dom";
 
 export default class Login extends Component {
     constructor(props) {
+        if (cookie.load("user"))
+        {
+            console.log("foanfian");
+            props.history.push('/app');
+        }
         super(props);
         this.state = {
             email: "",
@@ -25,11 +30,11 @@ export default class Login extends Component {
         this.setState({
             [event.target.id]: event.target.value
         });
-    }
+    };
 
     handleSubmit = event => {
         event.preventDefault();
-        fetch('/fire/login', {
+        fetch('/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -52,10 +57,6 @@ export default class Login extends Component {
     }
 
     render() {
-        if (cookie.load("user"))
-        {
-            this.props.history.push('/app');
-        }
         return (
             <div className="Login">
                 <form onSubmit={this.handleSubmit}>

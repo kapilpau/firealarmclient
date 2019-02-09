@@ -53,7 +53,7 @@ export default class Home extends React.Component {
 
     dispatchCrew = () => {
         console.log(this.state.selectedAlarm);
-        fetch('/fire/dispatchCrew', {
+        fetch('/dispatchCrew', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -67,24 +67,27 @@ export default class Home extends React.Component {
 
     componentDidMount = () => {
         console.log(cookie.load("user"));
-        if (!cookie.load("user").id)
+        if (!cookie.load("user"))
         {
             this.props.history.push('/app/login');
+        } else {
+            this.setState({lat: cookie.load("user").lat, long: cookie.load("user").long});
+            const socket = socketIOClient(`http://${window.location.hostname}:3000/`);
+            fetch('/list', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    id: cookie.load("user").id
+                })
+            }).then((res) => res.json())
+                .then((res) => {
+                    this.setState({alarms: res.alarms});
+                });
+            socket.on("alarmUpdate", data => this.setState({alarms: JSON.parse(data).alarms}));
+            socket.emit('fireJoin', cookie.load("user").id);
         }
-        this.setState({lat: cookie.load("user").lat, long: cookie.load("user").long});
-        const socket = socketIOClient(`http://${window.location.hostname}:3000/`);
-        fetch('/fire/list', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                id: cookie.load("user").id
-            })
-        }).then((res) => res.json())
-        .then((res) => {this.setState({alarms: res.alarms});});
-        socket.on("alarmUpdate", data => this.setState({ alarms: JSON.parse(data).alarms }));
-        socket.emit('fireJoin', cookie.load("user").id);
     };
     render() {
 

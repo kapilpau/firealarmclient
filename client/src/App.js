@@ -5,6 +5,7 @@ import { Route, Switch, Link } from "react-router-dom";
 import Home from "./containers/Home";
 import Login from "./containers/Login";
 import Signup from "./containers/Signup";
+import UpdateDetails from './containers/UpdateDetails';
 import NotFound from "./containers/NotFound";
 import cookie from "react-cookies";
 
@@ -19,8 +20,11 @@ class App extends Component {
     }
 
     handleLogout = () => {
-      cookie.remove('user');
+        console.log("Logging out");
+      cookie.remove('user', { path: '/' });
       this.setState({user: null});
+      window.location.pathname = "/app/login"
+
     };
 
     setUser = user => this.setState({user: user});
@@ -43,6 +47,7 @@ class App extends Component {
                   {this.state.user ?
                       <Navbar.Collapse>
                           <Nav pullRight>
+                              <NavItem href="/app/account">Update</NavItem>
                               <NavItem onClick={this.handleLogout}>Logout</NavItem>
                           </Nav>
                       </Navbar.Collapse>
@@ -54,7 +59,8 @@ class App extends Component {
                     <Route path="/app/" exact render={(props) => (<Home {...props} {...childProps} />)}/>
                     <Route path="/app/login" exact render={(props) => (<Login {...props} {...childProps} />)}/>
                     <Route path="/app/signup" exact render={(props) => (<Signup {...props} {...childProps} />)}/>
-                    <Route component={NotFound} />
+                    <Route path="/app/account"  exact render={(props) => (<UpdateDetails {...props} {...childProps} />)}/>
+                    <Route component={NotFound}/>
                 </Switch>
                 </div>
             </div>
