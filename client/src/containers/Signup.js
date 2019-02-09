@@ -47,7 +47,7 @@ export default class Signup extends React.Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        fetch('/signup', {
+        fetch('/fire/signup', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

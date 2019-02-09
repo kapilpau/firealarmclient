@@ -66,7 +66,7 @@ export default class UpdateDetails extends React.Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        fetch('/update', {
+        fetch('/fire/update', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
