@@ -18,7 +18,8 @@ export default class Login extends Component {
         super(props);
         this.state = {
             email: "",
-            password: ""
+            password: "",
+            errorMsg: ""
         };
     }
 
@@ -51,10 +52,12 @@ export default class Login extends Component {
                     cookie.save('user', res.user, { path: '/' });
                     this.props.setUser(res.user);
                     this.props.history.push("/app");
+                } else {
+                    this.setState({errorMsg: "Invalid email/password"})
                 }
             })
 
-    }
+    };
 
     render() {
         return (
@@ -87,6 +90,7 @@ export default class Login extends Component {
                     </Button>
                     <Link to='/app/signup'>Create account</Link>
                 </form>
+                <Text>{this.state.errorMsg}</Text>
             </div>
         );
     }

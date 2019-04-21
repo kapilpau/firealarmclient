@@ -44,7 +44,7 @@ export default class Home extends React.Component {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                id: this.state.selectedAlarm.id
+                id: this.state.selectedAlarm.uid
             })
         }).then((res) => res.json())
         .then((res) => {this.setState({modalIsOpen: false, selectedAlarm: null})});

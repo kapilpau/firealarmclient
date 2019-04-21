@@ -47,7 +47,7 @@ class App extends Component {
                   {this.state.user ?
                       <Navbar.Collapse>
                           <Nav pullRight>
-                              <NavItem href="/app/account">Update</NavItem>
+                              <NavItem href="/app/account">Account</NavItem>
                               <NavItem onClick={this.handleLogout}>Logout</NavItem>
                           </Nav>
                       </Navbar.Collapse>
