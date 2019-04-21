@@ -90,7 +90,7 @@ export default class Login extends Component {
                     </Button>
                     <Link to='/app/signup'>Create account</Link>
                 </form>
-                <Text>{this.state.errorMsg}</Text>
+                {this.state.errorMsg}
             </div>
         );
     }
